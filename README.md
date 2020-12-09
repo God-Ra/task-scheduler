@@ -103,7 +103,7 @@ Initialization of the scheduler is done by calling the *CreatePreemptive* or *Cr
 
 Afterwards you have to get the execution token with which you will control the execution and which will provide you with execution information of your task (e.g. is it paused, completed), and some other methods. You should use this execution token in your task.
 
-The method [CreateTask](#task-example) is used for task creation. Afterwards, we register our task for execution. By registering the task you specify the priority and duration of your task. In this example, the priority(range 1-20) is set to 5 and the duration to 2.5 seconds. Tasks with lower priority values have higher priority.
+The method [CreateTask](#task-with-execution-token) is used for task creation. Afterwards, we register our task for execution. By registering the task you specify the priority and duration of your task. In this example, the priority(range 1-20) is set to 5 and the duration to 2.5 seconds. Tasks with lower priority values have higher priority.
 
 The task is then started by calling the *Start(taskScheduler)* method.
 
@@ -132,7 +132,7 @@ taskScheduler.FinishScheduling();
 ```
 In this example, usage of preemptive scheduling on a single thread is shown. There are examples with multiple threads in the Demo class, but a single thread is used here for simplicity. 
 
-Two tasks are [created](#task-example) and registered, t1 with priority 5, and t2 with priority 4. We can see that t2 has bigger priority than t1.
+Two tasks are [created](#task-with-execution-token) and registered, t1 with priority 5, and t2 with priority 4. We can see that t2 has bigger priority than t1.
 
 The scheduler first starts execution of t1. After a second, t2 is scheduled for execution. The scheduler recognizes this, and because t2 has bigger priority, it pauses t1 and starts execution of t2. When t2 completes execution, the scheduler continues executing t1.
 
@@ -159,7 +159,7 @@ taskScheduler.FinishScheduling();
 ```
 In this example, usage of non-preemptive scheduling on a single thread is shown. There are examples with multiple threads in the Demo class, but a single thread is used here for simplicity. 
 
-Two tasks are [created](#task-example) and registered, t1 with priority 5, and t2 with priority 4. We can see that t2 has bigger priority than t1.
+Two tasks are [created](#task-with-execution-token) and registered, t1 with priority 5, and t2 with priority 4. We can see that t2 has bigger priority than t1.
 
 The scheduler first starts execution of t1. After a second, t2 is scheduled for execution. The scheduler recognizes this, and even though t2 has bigger priority, it continues executing t1 until it is completed. Once t1 is completed, the scheduler starts execution of t2.
 
